@@ -13,11 +13,15 @@ print(parent_dir)
 
 #import models
 from base_model import BaseModel, Base
-from customer import Customer
+from user import User
 from order import Order
 from product import Product
 from category import Category
 from cartitem import CartItem
+from brand import Brand
+from discount import Discount
+from cart import Cart
+from payment import Payment
 
 #import sqlalchemy
 import sqlalchemy
