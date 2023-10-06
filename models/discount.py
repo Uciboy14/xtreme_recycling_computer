@@ -1,6 +1,7 @@
 #!/bin/usr/python3
-from base_model import BaseModel
-from sqlalchemy import Column, String, Integer, ForeignKey
+from base_model import BaseModel, Base
+from sqlalchemy import Column, String, Integer, ForeignKey, DateTime
+from sqlalchemy.orm import relationship
 
 # Define the Discount model
 class Discount(BaseModel, Base):

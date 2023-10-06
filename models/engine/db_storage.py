@@ -3,13 +3,10 @@
 Contains the class DBStorage
 """
 
-import os
 import sys
-
-work_dir = os.path.abspath(os.path.dirname(__file__))
-parent_dir = os.path.dirname(work_dir)
-sys.path.append(parent_dir)
-print(parent_dir)
+from pathlib import Path
+base_dir = Path(__file__).parent.parent
+sys.path.append(str(base_dir))
 
 #import models
 from base_model import BaseModel, Base
@@ -17,19 +14,19 @@ from user import User
 from order import Order
 from product import Product
 from category import Category
-from cartitem import CartItem
+from cartItem import CartItem
 from brand import Brand
 from discount import Discount
 from cart import Cart
 from payment import Payment
-
-#import sqlalchemy
+from orderItem import OrderItem
+import os
 import sqlalchemy
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 from sqlalchemy.exc import IntegrityError
 
-classes = {'customer': Customer, 'product': Product, 'order': Order, 'category': Category, 'csrtitem': CartItem}
+classes = {'user': User, 'product': Product, 'order': Order, 'category': Category, 'cartitem': CartItem, 'brand': Brand, 'discount': Discount, 'cart': Cart, 'orderitem': OrderItem, 'payment': Payment}
 
 
 class DBStorage:
@@ -54,9 +51,9 @@ class DBStorage:
             Session = scoped_session(sess_factory)
             self.__session = Session
 
-        elif MYSQL_ENV == 'dev':
+        else:
             print("Using dev Environment")
-            self.__engine = create_engine('{}+{}://{}:{}@{}/{}'.format(DIALECT, DRIVER, MYSQL_USER, MYSQL_PWD, MYSQL_HOST, MYSQL_DB))
+            self.__engine = create_engine('sqlite:///../xtreme_recycling_computer.db')
             Base.metadata.create_all(self.__engine)
             sess_factory = sessionmaker(bind=self.__engine, expire_on_commit=False)
             Session = scoped_session(sess_factory)
@@ -102,10 +99,10 @@ class DBStorage:
 
     def reload(self):
         """reloads data from the database"""
-        #Base.metadata.create_all(self.__engine)
-        #sess_factory = sessionmaker(bind=self.__engine, expire_on_commit=False)
-        #Session = scoped_session(sess_factory)
-        #self.__session = Session
+        Base.metadata.create_all(self.__engine)
+        sess_factory = sessionmaker(bind=self.__engine, expire_on_commit=False)
+        Session = scoped_session(sess_factory)
+        self.__session = Session
 
     def close(self):
         """call remove() method on the private session attribute"""
@@ -123,7 +120,6 @@ class DBStorage:
                     return retrieved_customer
             except Exception as e:
                 print("An error occurred:", str(e))
-
         return None
 
     def count(self, cls=None):

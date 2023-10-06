@@ -4,23 +4,11 @@ from datetime import datetime
 from sqlalchemy import Column, String, DateTime
 from sqlalchemy.orm import declarative_base
 from sqlalchemy.exc import IntegrityError
-import os
 import sys
-
-#from cartitem import CartItem
-#from order import Order
-#from category import Category
-#from product import Product
-#from base_model import BaseModel, Base
+from pathlib import Path
 
 
-working_path = os.getcwd()
-work_dir = os.path.abspath(os.path.dirname(__file__))
-parent_dir = os.path.dirname(work_dir)
-sys.path.append(parent_dir)
-
-
-print(work_dir)
+base_dir = Path(__file__).parent.parent
 
 time_format = "%Y-%m-%dT%H:%M:%S.%f"
 
@@ -71,8 +59,10 @@ class BaseModel:
         except Exception as e:
             print(e)
 
+
     def delete(self):
-        models.storage.delete()
+        from models import storage
+        storage.delete()
 
     
         

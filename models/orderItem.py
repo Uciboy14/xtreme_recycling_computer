@@ -1,6 +1,8 @@
 #!/bin/usr/python3
-from base_model import BaseModel
+from base_model import BaseModel, Base
 from sqlalchemy import Column, String, Integer, Numeric, ForeignKey, DateTime
+from sqlalchemy.orm import relationship
+from product import Product
 
 # Define the OrderItem model
 class OrderItem(BaseModel, Base):
@@ -13,6 +15,6 @@ class OrderItem(BaseModel, Base):
 	unit_price = Column(Numeric(precision=10, scale=2), nullable=False)
 
 	# Define many-to-one relationship between OrderItem and Order
-	order = relationship('Order', back_populates='order_items')
+	#order = relationship('Order', back_populates='order_items')
 	# Define many-to-one relationship between OrderItem and Product
-	product = relationship('Product', back_populates='order_items')
+	#product = relationship('Product', back_populates='order_items')
