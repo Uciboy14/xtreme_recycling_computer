@@ -1,0 +1,556 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  outline: 0;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  /* Add min-height to ensure the footer stays at the bottom */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+hr {
+    height: 1px; /* Set the height of the line */
+    background-color: #333; /* Set the line color */
+    border: none; /* Remove the default border */
+    margin: 40px 0; /* Add margin for spacing */
+}
+
+
+/* Style the header */
+.custom-header {
+    background-color: #fff;
+    color: #333;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    border: 1px solid #ddd; /* Border for the card */
+}
+
+ /* CSS for the logo */
+        /* CSS for the container */
+        .logo-container {
+            display: flex; /* Use flexbox for layout */
+            align-items: center; /* Vertically center the content */
+        }
+
+        /* CSS for the logo */
+        .logo img {
+            max-width: 100px; /* Maximum width for the logo image */
+            height: auto; /* Maintain aspect ratio */
+        }
+
+        /* CSS for the h2 */
+        .logo-container h2 {
+          margin-left: 20px; /* Add spacing between logo and h2 */
+          color: green; /* Text color for the h2 */
+          font-size: 24px;
+          letter-spacing: 2px;
+          font-family: 'Your-Designed-Font', sans-serif; /* Replace 'Your-Designed-Font' with your chosen font */
+          text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Add a text shadow for a fancy effect */
+     
+        }
+
+        /* CSS for the search bar */
+        .search-bar {
+            display: flex; /* Use flexbox for layout */
+            align-items: center; /* Vertically center the content */
+        }
+
+        .search-input {
+            border: 1px solid #333; /* Border for the search input */
+            padding: 5px 10px; /* Padding for the search input */
+            margin-right: 10px; /* Margin between input and button */
+            border-radius: 5px; /* Rounded corners for the input */
+        }
+
+        .search-button {
+            background-color: #fff; /* Background color for the button */
+            color: #333; /* Text color for the button */
+            border: 1px solid #333; /* Border for the search input */
+            padding: 5px 10px; /* Padding for the button */
+            border-radius: 5px; /* Rounded corners for the button */
+            cursor: pointer; /* Cursor style on hover */
+        }
+
+/* Style the top navigation bar */
+.topnav {
+  overflow: hidden;
+  background-color:  #008b8b;
+  border: 1px solid #ddd; /* Border for the card */
+}
+
+/* Style the topnav links */
+.topnav a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  margin-left: 10px;
+}
+
+/* Change color on hover */
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* Create three unequal columns that float next to each other */
+.column {
+  float: left;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+/* Left and right column */
+.side {
+  width: 20%;
+}
+
+
+/*** shopping cart ****/
+.shopping-cart-icon {
+  display: inline-block;
+  width: 16px; /* Set the width and height according to your icon's dimensions */
+  height: 16px;
+  background-image: url('images/shopping-cart.png');
+  background-size: cover; /* Adjust this property as needed for your icon */
+}
+
+/**** My account section *****/
+.my-account {
+    display: flex;
+    position: relative;
+    top: 9px; /* Move the element 20px down */
+    padding: 5px 10px; /* Padding for the search input */
+    margin-right: 10px;
+}
+
+.my-account a {
+    position: relative;
+    padding: 0 5px;
+    font-size: 30px;
+}
+
+/***** shopping cart *******/
+.shopping-cart {
+  position: relative;
+  top: 8px; /* Move the element 20px down */
+  padding: 5px 10px; /* Padding for the search input */
+  margin-right: 10px;
+}
+
+/***** Contact us ******/
+.contact-us {
+  position: relative;
+  top: 8px; /* Move the element 20px down */
+  padding: 5px 10px; /* Padding for the search input */
+  margin-right: 10px;
+}
+
+/** Container **/
+.custom-container {
+  background-color: #eee;
+  justify-content: space-between;
+  border-radius: 5px;
+  border: 1px solid #ddd; /* Border for the card */
+}
+
+.custom-container a {
+    color: #444;
+    text-decoration: none;
+    padding-left: 17px;
+}
+
+.custom-container img {
+    width: 15px;
+}
+
+/***** Image background style ****/
+.background-container img {
+    height: 500px;
+    color: #fff; /* Text color inside the container */
+    }
+
+/*** Shopping cart conatiner *****/
+.shopping-cart-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;            
+}
+
+/**** Main container ******/
+.main-container {
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 50px;
+  border: 1px solid #ddd; /* Border for the card */
+}
+
+.main-container > h3 {
+  font-weight: bold;
+  font-size: 20px; 
+  padding: 10px;  
+}
+
+/******** Products tray/row styling ******/
+.tray {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  background-color: #E2E2E2;
+  border-top: 1px solid #ccc; /* Just for demonstration */
+  border-bottom: 1px solid #ccc; /* Just for demonstration */
+
+}
+
+.tray-item {
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+  padding: 20px;
+  text-align: center;
+  width: 294px;
+  background-color: #fff;
+}
+
+.tray-item:hover {
+  transform: scale(1.05); /* Add a slight zoom effect on hover */
+}
+
+.tray-item img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.tray-item h4 {
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+.tray-item p {
+    font-size: 14px;
+    color: #777;
+}
+
+.tray-item .price-tag {
+  color: #333;
+  font-size: 16px;
+}
+
+.tray-item button {
+  background-color: #007bff; /* Blue background color */
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.tray-item button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+
+/**** Product section *******/
+.product-container {
+  border: 2px solid #ccc; /* Just for demonstration */
+  padding: 15px;
+  margin: 0 auto;
+  text-align: center;
+  width: 350px;
+}
+
+.product-container h4 {
+  text-align: center;
+}
+
+/****** Links styling ******/
+.shopping-cart-container a {
+  text-decoration: none;
+  color: #333;
+  transition: background-color 0.2s, color 0.2s; /* Smooth color transition */
+  display: inline-block; /* Make the link an inline-block element */
+  text-align: center; /* Center text horizontally */
+  font-size: 16px;
+}
+
+.custom-header a:hover {
+    color: #008b8b; /* Change text color on hover */
+    text-decoration: none;
+    transform: scale(1.05); /* Add a slight zoom effect on hover */
+}
+
+/* Middle column */
+.column.middle {
+  width: 77%;
+}
+
+/* Clear floats after the columns */
+.row::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column.side, .column.middle {
+    width: 100%;
+  }
+}
+
+/* Style the footer */
+/* Footer Container */
+
+footer {
+  background-color: #333;
+}
+        .footer {
+            background-color: #333;
+            color: #fff;
+            padding: 40px 40px;
+            border: 1px solid #ddd; /* Border for the card */
+        }
+
+        /* Footer Grid */
+        .footer-grid {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        /* Footer Column */ 
+        .footer-column {
+            flex: 1;
+            margin-right: 30px;
+        }
+
+        /* Footer Heading */
+        .footer-heading {
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+
+        /* Footer Links */
+        .footer-link {
+            display: block;
+            color: #fff;
+            text-decoration: none;
+            margin-bottom: 10px;
+        }
+
+        .footer-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer Contact Info */
+        .footer-contact-info {
+            margin-top: 20px;
+            font-size: 16px;
+        }
+        
+
+/* Custom CSS for styling for sidenav */
+        .category-head {
+            background-color: #008b8b;
+            padding: 5px 10px;
+            font-weight: bold;
+        }
+
+        .category-text {
+          color: #333;
+        }
+
+        .category-row {
+            display: flex;
+            align-items: center;
+            padding: 5px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            border: 1px solid #ccc; /* Just for demonstration */
+        }
+
+        .category-row:hover {
+            background-color: #008b8b;
+       }
+
+        .category-icon {
+            margin-right: 10px;
+        }
+
+/* Custom CSS */
+.custom-col-md-3 {
+    width: 80% !important;/* Adjust the width as needed */
+}
+
+.my-container3:hover {
+  transform: scale(1.05); /* Add a slight zoom effect on hover */
+}
+
+.body-container {
+  border: 1px solid #ddd; /* Border for the card */
+
+}
+
+/* Custom CSS for the info cards */
+.info-card {
+    background-color: #f5f5f5; /* Smoky white background color */
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
+}
+
+.icon-container {
+    background-color: #008b8b; /* Green color for the circle icon background */
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 20px; /* Center the circle icon */
+}
+
+.icon-container img {
+    max-width: 50px; /* Limit the image size within the circle */
+}
+
+.text-container h3 {
+    font-size: 24px;
+    margin-top: 0;
+}
+
+.text-container h5 {
+    font-size: 18px;
+    color: #333; /* Darker text color */
+    margin-bottom: 5px;
+}
+
+.text-container p {
+    font-size: 16px;
+    color: #555; /* Slightly lighter text color */
+}
+
+.container > h3 {
+    text-align: center;
+    padding: 20px;
+    font-size: 30px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    font-family: 'Open Sans', sans-serif; /* Header 3 font */
+}
+
+.message-us {
+  margin-top: 100px;
+  background-color: #008b8b;
+  border-radius: 1px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
+  border: 1px solid #ddd; /* Border for the card */
+}
+
+/* Custom CSS for the message card */
+        .message-card {
+            padding: 50px 60px;
+        }
+
+        .message-card h4 {
+            font-size: 32px !important;
+            color: #191970; /* Heading color */
+            font-weight: bold;
+            font-family: 'Raleway', sans-serif; /* Header 4 font */
+        }
+
+        .message-card em {
+            color: gainsboro; /* Text color */
+            margin-top: 10px;
+            font-family: 'Open Sans',sans-serif;
+            text-align: left;
+        }
+
+/***** Custom CSS for form card ***/
+.form-card {
+  padding: 50px 60px;
+}
+
+
+/* Custom CSS */
+.custom-col-md-3 {
+    width: 80% !important;/* Adjust the width as needed */
+}
+
+.product-container:hover {
+  transform: scale(1.05); /* Add a slight zoom effect on hover */
+}
+
+.my-container1 {
+    display: flex;
+}
+
+.my-container2 {
+    border-radius: 4px;
+    background-position: top 12px right 12px;
+    background-repeat: no-repeat;
+    background-color:  #20b2aa;
+    color: white;
+}
+
+.carousel-item {
+  position: relative;
+}
+
+.carousel-item::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7); /* Darker overlay - Increase opacity as needed */
+}
+
+.carousel-item img {
+  filter: brightness(70%); /* Adjust brightness percentage as needed */
+}
+
+.carousel-caption {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white; /* Text color */
+  font-size: 40px;
+}
+
+/* Dropdown toggle button style (no changes) */
+
+/* Dropdown menu style (no changes) */
+
+/* Icon styles (no changes) */
+
+/* Additional CSS for hover effect */
+.my-account.dropdown:hover .dropdown-menu {
+    display: block; /* Display the dropdown menu on hover */
+}
+
+.scroll-reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 3s ease, transform 3s ease;
+}

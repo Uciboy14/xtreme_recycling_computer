@@ -1,13 +1,14 @@
 #!/bin.usr/python3
 import os
 import sys
+from pathlib import Path
+base_dir = Path(__file__).parent
+print(base_dir)
+sys.path.append(str(base_dir))
 
 
-working_path = os.path.abspath(os.path.dirname(__file__))
-parent_dir = os.path.dirname(working_path)
-sys.path.append(parent_dir)
-
-from models.engine.db_storage import DBStorage
+from engine.db_storage import DBStorage
 storage = DBStorage()
 storage.reload()
+
 

@@ -10,7 +10,7 @@ sys.path.append(str(base_dir))
 
 #import models
 from base_model import BaseModel, Base
-from user import User
+from user_ import User
 from order import Order
 from product import Product
 from category import Category
@@ -32,7 +32,7 @@ classes = {'user': User, 'product': Product, 'order': Order, 'category': Categor
 class DBStorage:
     """interaacts with the MySQL database"""
     __engine = None
-    __session = None
+    session = None
 
     def __init__(self):
         """Instantiate a DBStorage object"""
@@ -49,77 +49,115 @@ class DBStorage:
             Base.metadata.create_all(self.__engine)
             sess_factory = sessionmaker(bind=self.__engine, expire_on_commit=False)
             Session = scoped_session(sess_factory)
-            self.__session = Session
+            self.session = Session
 
         else:
-            print("Using dev Environment")
             self.__engine = create_engine('sqlite:///../xtreme_recycling_computer.db')
             Base.metadata.create_all(self.__engine)
             sess_factory = sessionmaker(bind=self.__engine, expire_on_commit=False)
             Session = scoped_session(sess_factory)
-            self.__session = Session
+            self.session = Session
 
-    def all(self, cls=None):
+    def all(self, cls=None, limit=None):
         """query on the current database session"""
         # Import your model classes here to ensure they're recognized by SQLAlchemy
+    
+        if cls is None and limit is None:
+            classes = [User, Product, Category, CartItem, Order, Discount, Cart, Payment, OrderItem, Order, Brand]
+            result = {}
+            with self.session() as session:
+                for model_class in classes:
+                    objects = session.query(model_class).all()
+                    for obj in objects:
+                        result[f"{obj.__class__.__name__}.{obj.id}"] = obj
 
-        if cls is None:
-            classes = [Customer, Product, Category, CartItem, Order]
-        else:
-            classes = [cls]
-
-        result = {}
-        with self.__session() as session:
-            for model_class in classes:
-                objects = session.query(model_class).all()
+        elif cls is not None and limit is not None:
+            classes = {'user': User, 'product': Product, 'order': Order, 'category': Category, 'cartitem': CartItem, 'brand': Brand, 'discount': Discount, 'cart': Cart, 'orderitem': OrderItem, 'payment': Payment}
+            cls = cls.lower()
+            result = {}
+            with self.session() as session:
+                objects = session.query(classes[cls]).limit(limit).all()
                 for obj in objects:
-                    result[f"{obj.__class__.__name__}.{obj.id}"] = obj
+                    result[f"{obj.__class__.__name__}.{obj.id}"] = obj   
+        else:
+            classes = {'user': User, 'product': Product, 'order': Order, 'category': Category, 'cartitem': CartItem, 'brand': Brand, 'discount': Discount, 'cart': Cart, 'orderitem': OrderItem, 'payment': Payment}
+            cls = cls.lower()
+            result = {}
+            with self.session() as session:
+                objects = session.query(classes[cls]).all()
+                for obj in objects:
+                    result[f"{obj.__class__.__name__}.{obj.id}"] = obj   
         return result
 
 
     def new(self, obj):
         """add the object to the current database session"""
         try:
-            self.__session.add(obj)
+            self.session.add(obj)
         except IntegrityError as e:
-            self.__session.rollback()
+            self.session.rollback()
             print('Integrity Error ', e)
         except Exception as e:
-            self.__session.rollback()
+            self.session.rollback()
             print('Exception Occured: ', e)
 
     def save(self):
-        """commifout all changes of the current database session"""
-        self.__session.commit()
+        """commit out all changes of the current database session"""
+        self.session.commit()
 
     def delete(self, obj=None):
         """delete from the current database session obj if not None"""
         if obj is not None:
-            self.__session.delete(obj)
+            self.session.delete(obj)
+
+    def deleteByClass(self, cls=None, id=None):
+        """delete from the current database session obj if not None"""
+        if cls is not None and id is not None:
+            obj = self.get(classes[cls], id)
+            self.delete(obj)
 
     def reload(self):
         """reloads data from the database"""
         Base.metadata.create_all(self.__engine)
         sess_factory = sessionmaker(bind=self.__engine, expire_on_commit=False)
         Session = scoped_session(sess_factory)
-        self.__session = Session
+        self.session = Session
 
     def close(self):
         """call remove() method on the private session attribute"""
-        self.__session.remove()
+        self.session.remove()
 
-    def get(self, cls=None, id=None):
+    def get(self, cls=None, id=None, username=None, email=None):
         """Returns obj based on class name and its ID"""
+
         if cls is not None and id is not None:
             try:
-                retrieved_customer = self.__session.query(classes[cls]).get(id)
+                retrieved_customer = self.session.query(classes[cls]).get(id)
                 if retrieved_customer is None:
                     print("Customer not found.")
                 else:
-                    print("Retrieved Customer:", retrieved_customer)
                     return retrieved_customer
             except Exception as e:
                 print("An error occurred:", str(e))
+        elif cls is not None and username is not None:
+            try:
+                retrieved_customer = self.session.query(classes[cls]).get(username)
+                if retrieved_customer is None:
+                    print("Customer not found.")
+                else:
+                    return retrieved_customer
+            except Exception as e:
+                print("An error occurred:", str(e))
+        elif cls is not None and email is not None:
+            try:
+                retrieved_customer = self.session.query(classes[cls]).filter(User.email==email).first()
+                if retrieved_customer is None:
+                    print("Customer not found.")
+                else:
+                    return retrieved_customer
+            except Exception as e:
+                print("An error occurred:", str(e))
+
         return None
 
     def count(self, cls=None):
@@ -131,3 +169,53 @@ class DBStorage:
                 return None
         else:
             return len(self.all())
+
+    def get_user_cartitems(self, cart_id):
+        result = {}
+        if cart_id is not None:
+            objects = self.session.query(CartItem).join(CartItem.cart).filter(Cart.id == cart_id).all()
+            print(objects)
+            if objects is not None:
+                for obj in objects:
+                    result[f"{obj.__class__.__name__}.{obj.id}"] = obj
+                return result
+            return objects
+
+    def get_product_from_cartitem(self, cart_item_id):
+        """ Get a ptoduct based on its category and brand """
+        result = {}
+        if cart_item_id is not None:
+            objects = self.session.query(Product).join(Product.cart_items).filter(CartItem.id == 'cart_item_id').all()
+            for obj in objects:
+                result[f"{obj.__class__.__name__}.{obj.id}"] = obj
+            return result
+
+
+    def get_all_product(self, category_name, brand_name):
+        """ Get a ptoduct based on its category and brand """
+        result = {}
+        if category_name is not None and brand_name is not None:
+            objects = self.session.query(Product).join(Product.category).join(Product.brand).filter(Category.name==category_name).filter(Brand.name==brand_name).all()
+            for obj in objects:
+                result[f"{obj.__class__.__name__}.{obj.id}"] = obj
+            return result
+
+    def get_category_product(self, category_id):
+        """ Get a ptoduct based on its category"""
+        result = {}
+        if category_id is not None:
+            objects = self.session.query(Product).join(Product.category).filter(Category.id==category_id).all()
+            for obj in objects:
+                result[f"{obj.__class__.__name__}.{obj.id}"] = obj
+            return result
+
+    def get_brand_product(self, brand_id):
+        """ Get a ptoduct based on its category"""
+        result = {}
+        if brand_id is not None:
+            objects = self.session.query(Product).join(Product.brand).filter(Brand.id==brand_id).all()
+            for obj in objects:
+                result[f"{obj.__class__.__name__}.{obj.id}"] = obj
+            return result
+
+    

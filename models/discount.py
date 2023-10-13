@@ -6,8 +6,13 @@ from sqlalchemy.orm import relationship
 # Define the Discount model
 class Discount(BaseModel, Base):
     __tablename__ = 'discounts'
-
-    discount_id = Column(Integer, primary_key=True)
+    __table_args__ = {'extend_existing': True}  # Add this line
+    
+    #discount_id = Column(Integer, primary_key=True)
     code = Column(String(20), unique=True, nullable=False)
     percentage = Column(Integer, nullable=False)
     expiration_date = Column(DateTime(timezone=True))
+
+    def __init__(self, *args, **kwargs):
+        """initializes city"""
+        super().__init__(*args, **kwargs)

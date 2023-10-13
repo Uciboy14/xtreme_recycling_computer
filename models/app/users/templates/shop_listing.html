@@ -1,0 +1,58 @@
+
+    {% extends 'layout.html' %}
+
+    {% block content %}
+    {% include 'navbar.html' %}
+    <!------- Two column Layout -------->
+    <div class="container-fluid mt-4">
+        <!-- Breadcrumb Navigation -->
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb" style="background-color: #fff;">
+                <li class="breadcrumb-item"><a href="{{ url_for('user.index')}}">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{name}}</li>
+            </ol>
+        </nav>     
+        <!-- Your Content Goes Here -->
+        <div class="container-fluid border p-3 my-container2">
+            <h2 class="h2">{{name}}</h2>
+            <div class="my-container1"> 
+                <h5 class="h5">Fast Shipping Easy</h5>
+                <h5 class="h5 px-3 mx-3">Returns Shopper</h5>
+                <h5 class="h5 px-3 mx-3">Approved 4.7/5 Stars</h5>
+            </div>
+            </div>
+            <div class="container-fluid px-5">
+                <div class="row">
+                    <!-- First Column -->
+                    {% for product in products %}
+                    <div class="product-container mb-3 mt-5 scroll-reveal">
+                        <img src="{{url_for('static', filename='images/'+product.image_urls)}}" alt="Product Image">
+                        <h4>{{product.name}}</h4>
+                        <a href="{{ url_for('user.products_details', id=product.id)}}">Description: {{product.description}}</a>
+                        <p class="price-tag">{{product.price}}</p>
+                        <a href="{{ url_for('user.products_details', id=product.id)}}" class="btn btn-primary btn-info">Product INFO</a>
+                    </div>
+                    {% endfor %}
+
+                                <!-- Pagination -->
+                    <nav aria-label="Page navigation" style="margin:0 auto;">
+                        <ul class="pagination justify-content-center">
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{ products.prev_num }}" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
+                            <li class="page-item"><a href="?page={{ products.prev_num }}" class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{ products.next_num }}" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+{% endblock %}

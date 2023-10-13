@@ -9,6 +9,7 @@ from pathlib import Path
 
 
 base_dir = Path(__file__).parent.parent
+sys.path.append(str(base_dir))
 
 time_format = "%Y-%m-%dT%H:%M:%S.%f"
 
@@ -62,7 +63,10 @@ class BaseModel:
 
     def delete(self):
         from models import storage
-        storage.delete()
+        storage.delete(self)
 
     
-        
+    
+    def all(self):
+        from models import storage
+        storage.all()

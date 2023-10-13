@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Column Width</title>
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <!---<link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='js/bootstrap.min.js') }}"> ---->>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/toastr.min.css') }}">
+    </head>
+    <body>
+    {% block content %}
+    {% endblock %}
+
+<div class="row">
+    <div class="col">
+<!-- Footer -->
+    <footer class="text-center text-lg-start text-muted mt-3">
+      <!-- Section: Links  -->
+      <section class="">
+        <div class="container text-center text-md-start pt-4 pb-4">
+          <!-- Grid row -->
+          <div class="row mt-3">
+            <!-- Grid column -->
+            <div class="col-12 col-lg-3 col-sm-12 mb-2">
+              <!-- Content -->
+              <a href="#" target="_blank" class="text-white h3">
+                XTREME RECYCLING COMPUTER
+              </a>
+              <p class="mt-1 text-white">
+                © 2023 Copyright: xtremerecyclyingcomputer.com
+              </p>
+            </div>
+            <!-- Grid column -->
+
+            <!-- Grid column -->
+            <div class="col-6 col-sm-4 col-lg-2">
+              <!-- Links -->
+              <h6 class="text-uppercase text-white fw-bold mb-2">
+                Store
+              </h6>
+              <ul class="list-unstyled mb-4">
+                <li><a class="text-white-50" href="#">About us</a></li>
+                <li><a class="text-white-50" href="#">Find store</a></li>
+                <li><a class="text-white-50" href="#">Categories</a></li>
+                <li><a class="text-white-50" href="#">Blogs</a></li>
+              </ul>
+            </div>
+            <!-- Grid column -->
+
+            <!-- Grid column -->
+            <div class="col-6 col-sm-4 col-lg-2">
+              <!-- Links -->
+              <h6 class="text-uppercase text-white fw-bold mb-2">
+                Information
+              </h6>
+              <ul class="list-unstyled mb-4">
+                <li><a class="text-white-50" href="#">Help center</a></li>
+                <li><a class="text-white-50" href="#">Money refund</a></li>
+                <li><a class="text-white-50" href="#">Shipping info</a></li>
+                <li><a class="text-white-50" href="#">Refunds</a></li>
+              </ul>
+            </div>
+            <!-- Grid column -->
+
+            <!-- Grid column -->
+            <div class="col-6 col-sm-4 col-lg-2">
+              <!-- Links -->
+              <h6 class="text-uppercase text-white fw-bold mb-2">
+                Support
+              </h6>
+              <ul class="list-unstyled mb-4">
+                <li><a class="text-white-50" href="#">Help center</a></li>
+                <li><a class="text-white-50" href="#">Documents</a></li>
+                <li><a class="text-white-50" href="#">Account restore</a></li>
+                <li><a class="text-white-50" href="#">My orders</a></li>
+              </ul>
+            </div>
+            <!-- Grid column -->
+
+            <!-- Grid column -->
+            <div class="col-12 col-sm-12 col-lg-3">
+              <!-- Links -->
+              <h6 class="text-uppercase text-white fw-bold mb-2">Newsletter</h6>
+              <p class="text-white">Stay in touch with latest updates about our products and offers</p>
+              <div class="input-group mb-3">
+                <input type="email" class="form-control border" placeholder="Email" aria-label="Email" aria-describedby="button-addon2" />
+                <button class="btn btn-light border shadow-0" type="button" id="button-addon2" data-mdb-ripple-color="dark">
+                  Join
+                </button>
+              </div>
+            </div>
+            <!-- Grid column -->
+          </div>
+          <!-- Grid row -->
+        </div>
+      </section>
+      <!-- Section: Links  -->
+
+      <div class="">
+        <div class="container">
+          <div class="d-flex justify-content-between py-4 border-top">
+            <!--- payment --->
+            <div>
+              <i class="fab fa-lg fa-cc-visa text-white"></i>
+              <i class="fab fa-lg fa-cc-amex text-white"></i>
+              <i class="fab fa-lg fa-cc-mastercard text-white"></i>
+              <i class="fab fa-lg fa-cc-paypal text-white"></i>
+            </div>
+            <!--- payment --->
+
+            <!--- language selector --->
+            <div class="dropdown dropup">
+              <a class="dropdown-toggle text-white" href="#" id="Dropdown" role="button" data-mdb-toggle="dropdown" aria-expanded="false"> <i class="flag-united-kingdom flag m-0 me-1"></i>English </a>
+
+              <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="Dropdown">
+                <li>
+                  <a class="dropdown-item" href="#"><i class="flag-united-kingdom flag"></i>English <i class="fa fa-check text-success ms-2"></i></a>
+                </li>
+                <li>
+                  <hr class="dropdown-divider" />
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#"><i class="flag-poland flag"></i>Polski</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#"><i class="flag-china flag"></i>中文</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#"><i class="flag-japan flag"></i>日本語</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#"><i class="flag-germany flag"></i>Deutsch</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#"><i class="flag-france flag"></i>Français</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#"><i class="flag-spain flag"></i>Español</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#"><i class="flag-russia flag"></i>Русский</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#"><i class="flag-portugal flag"></i>Português</a>
+                </li>
+              </ul>
+            </div>
+            <!--- language selector --->
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- Footer -->
+    </div>
+  </div>
+  
+  <script src="{{ url_for('static', filename='js/jquery-3.7.1.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/toastr.min.js') }}"></script>
+  <script>
+    // Login Process
+    $(document).ready(function() {
+    $("#login-form").submit(function(event) {
+      event.preventDefault(); // Prevent the default form submission
+
+      // Basic email validation using regex
+      const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+
+      // Get input values
+      var email = $("#email").val();
+      var password = $("#password").val();
+      var rememberMe = $("#rememberMe").is(":checked");
+
+
+    
+      // Validate input
+      if (email === "" || password === "") {
+         $("#login-message").text("Please fill in all fields.");
+                }
+
+      else {
+      // Get the form data
+      emailError.textContent = ""; // Clear the error message
+      var formData = {
+        email: $("#email").val(),
+        password: $("#password").val(),
+        rememberMe: $("#rememberMe").is(":checked"),
+      };
+
+      // Send a POST request to the Flask endpoint
+      $.ajax({
+        type: "POST",
+        url: "/login",  // Flask endpoint URL
+        data: formData,
+        dataType: "json",
+        success: function(response) {
+          // Check the login response
+          if (response.message === "Login successful") {
+            // Display a success message to the user
+            $("#login-message").text("Login successful!");
+          } else {
+            // Display a failure message to the user
+            $("#login-message").text("Login failed. Please check your credentials.");
+          }
+        },
+        error: function(error) {
+          // Handle any errors here
+          console.error("Ajax request error:", error);
+        }
+      });
+    }
+    });
+  });
+
+// Add to cart process
+    // Login Process
+    $(document).ready(function() {
+    $("#add_to_cart").submit(function(event) {
+      event.preventDefault(); // Prevent the default form submission
+
+      // Initialize Toastr
+    toastr.options = {
+      closeButton: true,
+      progressBar: true,
+      positionClass: "toast-top-right"
+    };
+
+      // Get input values
+      var product_id = $(product).data("id");
+      var quantity = $("#quantity").val();
+
+      var formData = {
+        product_id: product_id,
+        quantity: quantity,
+      };
+
+      // Send a POST request to the Flask endpoint
+      $.ajax({
+        type: "POST",
+        url: "/add_to_cart",  // Flask endpoint URL
+        data: formData,
+        dataType: "json",
+        success: function(response) {
+          // Check the login response
+          if (response.success) {
+
+            // Display a success message to the user
+            $("#add_to_cart_message").text(function() {
+      // Perform the action (e.g., add item to cart)
+
+      // Show a success notification
+      toastr.success("Item added to cart successfully!");
+    });
+
+            if (response.redirect) {
+               // Rediredt to the new route
+            window.location.href = response.redirect;
+          }
+
+          }
+
+          else if (response.exist) {
+            // Display a success message to the user
+            $("#add_to_cart_message").text(function() {
+      // Perform the action (e.g., add item to cart)
+
+      // Show a success notification
+      toastr.error("Item exist in cart!");
+    }); 
+
+            if (response.redirect) {
+              // Rediredt to the new route
+              window.location.href = response.redirect;
+            }
+          }
+           else {
+            // Display a failure message to the user
+            $("#add_to_cart_message").text("Login failed. Please check your credentials.");
+          }
+        },
+        error: function(error) {
+          // Handle any errors here
+          console.error("Ajax request error:", error);
+        }
+      });
+    });
+  });
+
+// Update cart and Delete cart process
+  $(document).ready(function() {
+  // Handle cart item updates
+  $('.update-cart-item').click(function() {
+    // Find the cart item ID associated with the clicked button
+    var cartItemId = $(this).data('cart-item-id');
+    
+    // Find the input element with the quantity for this item
+    var quantityInput = $('#quantity');
+
+    // Get the new quantity value
+    var newQuantity = quantityInput.val();
+
+    // Send the new quantity to your Flask backend
+    $.ajax({
+      type: 'POST',
+      url: '/update-cart-item',
+      data: {
+        cart_item_id: cartItemId,
+        new_quantity: newQuantity
+      },
+      success: function(response) {
+        // Handle the response from the server, e.g., update the UI
+        console.log(response);
+      }
+    });
+  });
+
+  // Handle cart item removal
+  $('.remove-cart-item').click(function() {
+    // Find the cart item ID associated with the clicked button
+    var cartItemId = $(this).data('cart-item-id');
+
+    // Send a request to your Flask backend to remove the item from the cart
+    $.ajax({
+      type: 'POST',
+      url: '/remove-cart-item',
+      data: {
+        cart_item_id: cartItemId
+      },
+      success: function(response) {
+        // Handle the response from the server, e.g., update the UI
+        
+      if (response.success) {
+                  // Display a success message to the user
+                  $("#add_to_cart_message").text("Item Added successfully!");
+
+                  if (response.redirect) {
+                     // Rediredt to the new route
+                  window.location.href = response.redirect;
+                }
+        }
+      }
+    });
+  });
+});
+
+// Scroll view process
+document.addEventListener("DOMContentLoaded", function() {
+    const revealElements = document.querySelectorAll(".scroll-reveal");
+
+    function revealOnScroll() {
+        revealElements.forEach((element) => {
+            const revealTop = element.getBoundingClientRect().top;
+            const windowHeight = window.innerHeight;
+            if (revealTop < windowHeight) {
+                element.style.opacity = 1;
+                element.style.transform = "translateY(0)";
+            }
+        });
+    }
+
+    window.addEventListener("scroll", revealOnScroll);
+    revealOnScroll(); // Trigger the initial check
+
+    // You can adjust the animation duration and other styles as needed.
+});  
+
+
+  
+  </script>
+</body>
+</html>
