@@ -1,0 +1,25 @@
+{% load static %}
+
+<!-- Sidebar (Left Column) -->
+    <div class="col-md-3">
+    <div class="p-3 border" style="background-color: #eee;">
+        <div class="custom-container" style="margin-bottom: 112%;">
+            <div class="category-head d-flex align-items-center justify-content-between text-white w-100 navbar-brand">Categories</div>
+            {% for category in categories %}
+            <div class="category-row nav">
+                <img src="{% static 'xtreme/images/cat.gif' %}">
+                <a href="{% url 'category_products' category.id %}" class="category-icon category-text nav-item nav-link">{{ category.name }}</a>
+            </div>
+            {% endfor %}
+            <div></div>
+            <hr>
+            <div class="category-head d-flex align-items-center justify-content-between text-white w-100 navbar-brand">Brands</div>
+            {% for brand in brands %}
+            <div class="category-row">
+                <img src="{% static 'xtreme/images/cat.gif' %}">
+                <a href="{% url 'brand_products' brand.id %}" class="category-icon category-text nav-item nav-link">{{ brand.name }}</a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>

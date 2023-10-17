@@ -1,0 +1,89 @@
+{% load static %}
+
+<div class="custom-header">
+    <div class="logo-container">
+        <div class="logo">
+            <a href="{% url 'index' %}">
+                <img src="{% static 'xtreme/images/logo.png' %}" alt="Xtreme Computer Recycling">
+            </a>
+        </div>
+        <h2>Xtreme Computer Recycling</h2>
+    </div>
+
+    {% if request.user.is_authenticated %}
+    <div class="shopping-cart-container">
+        <div class="contact-us p-3">
+            <a href="{% url 'contact_us' %}">
+                <p>
+                    <img src="{% static 'xtreme/images/contact-us.png' %}" alt="Contact us" style="width: 35px; height: 35px;"> Contact Us
+                </p>
+            </a>
+        </div>
+        <div class="shopping-cart">
+            <a href="{% url 'cart' %}">
+                <p>
+                    <img src="{% static 'xtreme/images/shopping-cart.png' %}" alt="Shopping Cart" style="width: 30px; height: 30px;"> My Cart ({{ count }})
+                </p>
+            </a>
+        </div>
+        <div class="my-account dropdown">
+            <a href="#" class="dropdown-toggle" id="accountDropdown" data-toggle="dropdown">
+                <img class="icon-container" src="{% static 'xtreme/images/admin.png' %}" alt="" style="width: 40px; height: 30px;">
+            </a>
+            <div class="dropdown-menu" aria-labelledby="accountDropdown">
+                <a class="dropdown-item mb-2 px-3" href="#">
+                    <i class="fas fa-user p-3"></i>{{ request.user.username }}
+                </a>
+                <a class="dropdown-item px-2" href="{% url 'logout' %}">
+                    <i class="fas fa-sign-out-alt p-3"></i>Logout
+                </a>
+            </div>
+        </div>
+        <div class="search-bar">
+            <input type="text" class="search-input" placeholder="Search...">
+            <button class="search-button">Search</button>
+        </div>
+    </div>
+    {% else %}
+    <div class="shopping-cart-container">
+        <div class="contact-us p-3">
+            <a href="{% url 'contact_us' %}">
+                <p>
+                    <img src="{% static 'xtreme/images/contact-us.png' %}" alt="Contact us" style="width: 35px; height: 35px;"> Contact Us
+                </p>
+            </a>
+        </div>
+        <div class="shopping-cart">
+            <a href="{% url 'cart' %}">
+                <p>
+                    <img src="{% static 'xtreme/images/shopping-cart.png' %}" alt="Shopping Cart" style="width: 30px; height: 30px;"> My Cart
+                </p>
+            </a>
+        </div>
+        <div class="my-account dropdown">
+            <a href="#" class="dropdown-toggle" id="accountDropdown" data-toggle="dropdown">
+                <img class="icon-container" src="{% static 'xtreme/images/admin.png' %}" alt="" style="width: 40px; height: 30px;">
+            </a>
+            <div class="dropdown-menu" aria-labelledby="accountDropdown">
+                <a class="dropdown-item mb-2 px-2" href="{% url 'login' %}">
+                    <i class="fas fa-user p-3"></i>Login
+                </a>
+                <a class="dropdown-item px-2" href="{% url 'register' %}">
+                    <i class="fas fa-user p-3"></i>Register
+                </a>
+            </div>
+        </div>
+        <div class="search-bar">
+            <input type="text" class="search-input" placeholder="Search...">
+            <button class="search-button">Search</button>
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+<nav class="topnav">
+    <a href="#">Computers</a>
+    <a href="#">Laptops</a>
+    <a href="#">LCD Monitors</a>
+    <a href="#">Recycle and SELL</a>
+</nav>
